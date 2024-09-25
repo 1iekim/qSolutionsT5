@@ -13,6 +13,7 @@ let user,
   endDateInput,
   startDate,
   endDate,
+  progress,
   progressBar,
   progressS,
   progressAll,
@@ -43,7 +44,7 @@ document.onreadystatechange = function () {
     startDateInput = document.querySelector(".date-start");
     endDateInput = document.querySelector(".date-end");
     progressBar = document.querySelector(".progress-bar");
-    progressS = document.querySelector(".progress-bar__text span:first-child");
+    progress = document.querySelector(".progress-bar__text span:first-child");
     progressAll = document.querySelector(".progress-bar__text span:last-child");
     statusMessage = document.querySelector(".status__message");
     birthdayArticle = document.querySelector(".birthday-article");
@@ -216,14 +217,14 @@ function CancelHandler() {
 
 function ClearData() {
   progressAll.innerText = "0";
-  progressS.innerText = "0";
+  progress.innerText = "0";
   progressBar.value = 0;
   statusMessage.innerText = "";
 }
 
 async function updateContact(contactId, token) {
   const data = JSON.stringify({
-    cr7c6_dateofthelastbirthdaycongratulations: DateToStr(new Date()),
+    cr7c6_dateofthelastbirthdaycongratulations: null,//DateToStr(new Date()),
   });
 
   const url = encodeURI(
@@ -250,9 +251,10 @@ function ProgressUpdate() {
   let progressValue = 0;
 
   return function (bool) {
-    progressS.innerText = +(+progressS.innerText || 0) + +bool;
+    progress.innerText = +(+progress.innerText || 0) + 1;
+    progressS = +(+progressS || 0) + +bool;
     progressValue++;
-    if (+progressS.innerText > 0 && +progressAll.innerText > 0) {
+    if (+progressAll.innerText > 0) {
       progressBar.value = (progressValue / progressAll.innerText) * 100;
     }
 
@@ -261,7 +263,7 @@ function ProgressUpdate() {
         "Processing is cancelled successfully. " +
         (+progressAll.innerText || 0) +
         " contacts are processed, " +
-        (+progressS.innerText || 0) +
+        (+progressS || 0) +
         " congratulation e-mails were suceesfully sent (sending of " +
         ((+progressAll.innerText || 0) - (+progressS.innerText || 0)) +
         " e-mails failed)";
