@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple SPA</title>
+    <meta charset="utf-8" />
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal.min.js"></script>
+
+    <!--<script src="adal.js"></script>-->
+    <script src="./smtp.js"></script>
+    <script src="./task5.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI";
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+      }
+
+      .birthday-article {
+        display: none;
+      }
+
+      .status {
+        max-width: 410px;
+      }
+
+      #errorMessage {
+        color: red;
+      }
+
+      #message {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="login">Login</button>
+    <button id="logout" style="display: none">Logout</button>
+    <br />
+    <article class="birthday-article">
+      <div>
+        <label>
+          From:
+          <input class="date-start" type="date" name="" id="">
+        </label>
+        <label>
+          To:
+          <input class="date-end" type="date" name="" id="">
+        </label>
+        <button class="btn-start">Start</button>
+        <button class="btn-cancel">Cancel</button>
+      </div>
+      <label>
+        <progress class="progress-bar" value="0" max="100" style="width: 250px; height: 40px;"></progress>
+        <p class="progress-bar__text" style="margin: 0;">Processed contacts <span>X</span> from <span>Y</span></p>
+      </label>
+      <div class="status">
+        <h3>Status:
+        </h3>
+        <p class="status__message"></p>
+      </div>
+    </article>
+  </body>
+</html>
