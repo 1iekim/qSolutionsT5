@@ -224,7 +224,7 @@ function ClearData() {
 
 async function updateContact(contactId, token) {
   const data = JSON.stringify({
-    cr7c6_dateofthelastbirthdaycongratulations: null,//DateToStr(new Date()),
+    cr7c6_dateofthelastbirthdaycongratulations: DateToStr(new Date()),
   });
 
   const url = encodeURI(
